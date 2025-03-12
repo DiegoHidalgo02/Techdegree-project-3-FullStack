@@ -98,3 +98,10 @@ jobTittleInput.addEventListener("change", e => {
     }
 
 });
+
+designIput.addEventListener("change", e=>{
+    console.log(e.target.value);
+    colorInput.disabled = false;
+    colorInput.querySelector("option:nth-child(2)").selected = true;
+    changeColorDropDownMenu(e.target.value);
+});
