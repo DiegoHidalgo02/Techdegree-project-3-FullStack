@@ -32,3 +32,28 @@ let cvvControll = false;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+//Event Listeners
+window.addEventListener("DOMContentLoaded", ()=>{
+    nameInput.focus();
+    otherJobRoleInput.style.display = "none";
+    colorInput.disabled = true;
+    Array.from(paymentSelection.children).forEach(e => {
+
+        if(e.value === "credit-card"){
+
+            e.selected = true;
+        }
+
+    })
+    methods.forEach(element => {
+
+        if(element.id !== "credit-card"){
+            element.style.display = "none";
+        }
+
+    });
+});
+
+
+///////////////////////////////////////////////
+
