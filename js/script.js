@@ -32,6 +32,34 @@ let cvvControll = false;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+
+//Function for event listener
+function changeColorDropDownMenu(userSelection){
+
+    console.log(colorInput.children);
+
+    Array.from(colorInput.children).forEach(optionElement => {
+
+        if(optionElement.dataset.theme){
+
+            const optionElementTheme = optionElement.dataset.theme;
+
+            if(userSelection !== optionElementTheme){
+
+                optionElement.hidden = true;
+
+            }else{
+
+                optionElement.hidden = false;
+
+            }
+
+        }
+        
+    })
+
+}
+
 //Event Listeners
 window.addEventListener("DOMContentLoaded", ()=>{
     nameInput.focus();
@@ -57,3 +85,16 @@ window.addEventListener("DOMContentLoaded", ()=>{
 
 ///////////////////////////////////////////////
 
+jobTittleInput.addEventListener("change", e => {
+
+    if(e.target.value === "other"){
+
+        otherJobRoleInput.style.display = "block";
+
+    }else{
+
+        otherJobRoleInput.style.display = "none";
+
+    }
+
+});
