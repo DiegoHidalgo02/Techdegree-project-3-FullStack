@@ -357,3 +357,12 @@ function createListener(validatorTextFunction, nameInput){
 
 }
 //////////////////////////////////////////////////
+
+
+//Listener for validation
+nameInput.addEventListener("input", createListener(isValidName, "Name"));
+emailInput.addEventListener("input", createListener(isValidEmail, "Email"));
+cardNumberInput.addEventListener("input", createListener(isValidCardNumber, "Card Number"));
+zipCodeInput.addEventListener("input", createListener(isValidZipCode, "Zip Code"));
+cvv.addEventListener("input", createListener(isValidCVV, "CVV"));
+////////////////////////////////////////////////////////////////////
