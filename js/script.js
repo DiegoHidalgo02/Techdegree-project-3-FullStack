@@ -105,3 +105,64 @@ designIput.addEventListener("change", e=>{
     colorInput.querySelector("option:nth-child(2)").selected = true;
     changeColorDropDownMenu(e.target.value);
 });
+
+RegisterActivitiesBox.addEventListener("change", e => {
+
+    const activities = RegisterActivitiesBox.querySelectorAll('input:not([name="all"])');
+
+    if(e.target.name !== "all"){
+
+        activities.forEach(element => {
+
+            const controll1 = e.target.dataset.dayAndTime == element.dataset.dayAndTime
+            const controll2 = e.target !== element
+
+            if(e.target.checked === true){
+
+                if(controll1 && controll2){
+
+                    element.disabled = true; 
+                    element.parentNode.classList.add("disabled");
+        
+                }
+
+            }else{
+
+                if(controll1 && controll2){
+
+                    element.disabled = false;
+                    element.parentNode.classList.remove("disabled");
+
+                }
+
+            }
+    
+    
+        });
+
+    }
+
+
+
+    let totalAmountElement = document.querySelector("#activities-cost");
+    const regexForTotalAmount = /(\d+)/gm;
+    let currentValue = +totalAmountElement.textContent.match(regexForTotalAmount);
+    const amountElementSelected = +e.target.dataset.cost;
+
+    if(e.target.checked !== false){
+
+        currentValue += amountElementSelected;
+        
+        totalAmountElement.textContent = `Total: $${currentValue}`; 
+
+
+    }else{
+
+        currentValue -= amountElementSelected;
+
+        totalAmountElement.textContent = `Total: $${currentValue}`;
+        
+    }
+
+    
+})
