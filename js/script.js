@@ -444,3 +444,31 @@ function userFeedbackValidation(element, verification){
     }   
 }
 ////////////////////////////////////
+
+
+
+//Submit Controll
+form.addEventListener("submit", event => {
+
+    const nameCtrl = nameInputControll();
+    const emailCtrl = emailInputControll();
+    const activityCtrl = anActivityIsSelected();
+    const creditCardCtrl = creditCardControll();
+
+    if(creditCardSelected()){
+
+        if(!(nameCtrl && emailCtrl && activityCtrl && creditCardCtrl)){
+            event.preventDefault();
+        }
+    
+    }else{
+
+        if(!(nameCtrl && emailCtrl && activityCtrl)){
+            event.preventDefault();
+        }
+
+    }
+
+
+
+}) 
