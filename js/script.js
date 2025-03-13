@@ -366,3 +366,81 @@ cardNumberInput.addEventListener("input", createListener(isValidCardNumber, "Car
 zipCodeInput.addEventListener("input", createListener(isValidZipCode, "Zip Code"));
 cvv.addEventListener("input", createListener(isValidCVV, "CVV"));
 ////////////////////////////////////////////////////////////////////
+
+
+//Function form validation
+function anActivityIsSelected(){
+    const activitiesInputs = RegisterActivitiesBox.querySelectorAll("input");
+    const isSelected = Array.from(activitiesInputs).some( element => element.checked === true);
+    const element = document.querySelector("#activities-box");
+
+    if(isSelected){
+        userFeedbackValidation(element, isSelected);
+        return isSelected;
+    }else{
+        userFeedbackValidation(element, isSelected);
+        return isSelected
+    }
+
+
+}
+
+function creditCardSelected(){
+    return Array.from(paymentSelection.children).some( element => element.value === "credit-card" && element.selected === true);
+}
+
+function creditCardControll(){
+
+    if(cardNumberControll && zipCodeControll && cvvControll){
+
+        [cardNumberInput, zipCodeInput, cvv].forEach(element => userFeedbackValidation(element, true));
+        return true;
+
+    }else{
+
+        userFeedbackValidation(cardNumberInput, cardNumberControll);
+        userFeedbackValidation(zipCodeInput, zipCodeControll);
+        userFeedbackValidation(cvv, cvvControll);
+        return false;
+
+    }
+
+}
+
+function nameInputControll(){
+    if(nameControll){
+        userFeedbackValidation(nameInput, nameControll);
+        return true;
+    }else{
+        userFeedbackValidation(nameInput, nameControll);
+        return false
+    }
+}
+
+function emailInputControll(){
+
+    if(emailControll){
+        userFeedbackValidation(emailInput, emailControll);
+        return true
+    }else{
+        userFeedbackValidation(emailInput, emailControll)
+        return false;
+    }
+
+}
+
+function userFeedbackValidation(element, verification){
+
+    const section = element.parentNode;
+    const tooltip = section.querySelector(".hint")
+
+    if(verification){
+        section.classList.add("valid");
+        section.classList.remove("not-valid");
+    }else{
+        section.classList.add("not-valid");
+        section.classList.remove("valid");
+        showOrHideTip(true, tooltip);
+    }   
+}
+////////////////////////////////////
