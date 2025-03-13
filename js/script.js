@@ -268,3 +268,92 @@ function isValidCVV(cvv){
     }
 }
 /////////////////////////////////
+
+//Controll REGEX Validation Functions
+function showOrHideTip(show, element){
+    show ? element.style.display = "block" : element.style.display = "none"; 
+}
+
+function createListener(validatorTextFunction, nameInput){
+
+    return e => {
+
+        const text = e.target.value; //Extract text from input
+        const validText = validatorTextFunction(text); //call apripriate validation function
+        let showTip = false; //set tip to false
+        const tooltip = e.target.nextElementSibling; //target tipElement
+
+        if(text){ //controll if text isn't empty
+
+            if(!validText.test){ //use the return value (object with global regex validation(.test) and specif regex validation(.match) ) of function to manage the error text on tooltip element
+
+                switch (nameInput) {
+                    case "Name":
+                        nameControll = false;
+                        if(text.length > 1){
+                           tooltip.textContent = `${nameInput} field contains invalid characters:(${validText.match})`; 
+                        }else{
+                            tooltip.textContent = `${nameInput} field cannot be 1  character`;
+                        }
+                        break;
+                    case "Email":
+                        emailControll = false;
+                        if(validText.match){
+                            tooltip.textContent = `${nameInput} field contains invalid characters: on ${validText.match.username ? `username: ${validText.match.username}` : ""} ${validText.match.domain ? `, domain: ${validText.match.domain}` : "" }` 
+                        }else{
+                            tooltip.textContent = `${nameInput} address must be formatted correctly`
+                        }
+                        break;
+                    case "Card Number":
+                        cardNumberControll = false;
+                        text.length > 16 || text.length < 13 ? tooltip.textContent = "Credit card number must be between 13 - 16 digits" : tooltip.textContent = `${nameInput} field contains invalid characters:(${validText.match})` 
+                        break;
+                    case "Zip Code":
+                        zipCodeControll = false;
+                        text.length > 5 || text.length < 5 ? tooltip.textContent = "Zip Code must be 5 digits" : tooltip.textContent = `${nameInput} field contains invalid characters:(${validText.match})`;
+                        break;
+                    case "CVV":
+                        text.length > 3 || text.length < 3 ? tooltip.textContent = "CVV must be 3 digits" : tooltip.textContent = `${nameInput} field contains invalid characters:(${validText.match})` 
+                        break;
+                    default:
+                        break;
+                }
+
+                showTip = true;
+                    
+            }else{
+    
+                 switch (nameInput) {
+                    case "Name":
+                        nameControll = true;
+                        break;
+                    case "Email":
+                        emailControll = true;
+                        break;
+                    case "Card Number":
+                        cardNumberControll = true;
+                        break;
+                    case "Zip Code":
+                        zipCodeControll = true;
+                        break;
+                    case "CVV":
+                        cvvControll = true;
+                        break;
+                    default:
+                        break;
+    
+                 }
+            }
+
+        }else{
+
+            tooltip.textContent = `${nameInput} field cannot be blank`;
+            showTip = true;
+        }
+        
+        showOrHideTip(showTip, tooltip);
+
+    }
+
+}
+//////////////////////////////////////////////////
