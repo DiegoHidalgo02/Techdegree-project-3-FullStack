@@ -195,3 +195,76 @@ activitiesInput.forEach(input => {
 
 })
 ///////////////////////////////////////////////////////////
+
+//REGEX Validation Functions
+function isValidName(name){
+    const regexTest = /^[A-Za-z{1}][a-z]+$/;
+    const regexMatch = /([0-9])|([^a-zA-Z0-9])/g
+    return {
+        test: regexTest.test(name),
+        match: name.match(regexMatch)
+    }
+}
+
+function isValidEmail(email){
+    const regexTest = /^[a-zA-Z0-9.]{1,64}@[a-zA-Z0-9.-]{1,253}\.[a-z]{2,}$/i
+    const invalidUsername = /([^a-zA-Z0-9.])/g;
+    const invalidDomain = /([^a-zA-Z0-9.-])/g;
+
+    let username;
+    let domain;
+
+    if(email.includes("@")){
+
+        [username, domain] = email.split('@');
+        domain = domain.split(".")[0];
+
+        return {
+            test: regexTest.test(email),
+            match: {
+                    username: username.match(invalidUsername),
+                    domain: domain.match(invalidDomain)
+                } 
+        }
+
+
+    }
+
+    return false;
+
+
+}
+
+function isValidCardNumber(cardNumber){
+
+    const regexTest = /^(\d{4})(\d{4})(\d{4})(\d{1,4})$/;
+    const regexMatch = /([a-zA-Z]|[^a-zA-Z0-9])/g;
+
+    return {
+        test: regexTest.test(cardNumber),
+        match: cardNumber.match(regexMatch)
+    }
+}
+
+function isValidZipCode(zipCode){
+
+    const regexTest = /^\d{5}$/g;
+    const regexMatch = /([a-zA-Z]|[^a-zA-Z0-9])/g;
+
+    return {
+        test: regexTest.test(zipCode),
+        match: zipCode.match(regexMatch)
+    }
+
+}
+
+function isValidCVV(cvv){
+    const regexTest = /(^[\d]{3})$/;
+    const regexMatch =  /([a-zA-Z]|[^a-zA-Z0-9])/g;
+
+    return {
+        test: regexTest.test(cvv),
+        match: cvv.match(regexMatch)
+    }
+}
+/////////////////////////////////
