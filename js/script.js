@@ -166,3 +166,32 @@ RegisterActivitiesBox.addEventListener("change", e => {
 
     
 })
+
+paymentSelection.addEventListener("change", e => {
+
+    methods.forEach(method => {
+
+        if(e.target.value !== method.id){
+
+            method.style.display = "none";
+
+        }else{
+
+            method.style.display = "block";
+
+        }
+    })
+
+})
+
+activitiesInput.forEach(input => {
+
+    input.addEventListener("focus", event => {
+        input.parentNode.classList.add("focus")
+    })
+    input.addEventListener("blur", event => {
+        input.parentNode.classList.remove("focus");
+    })
+
+})
+///////////////////////////////////////////////////////////
