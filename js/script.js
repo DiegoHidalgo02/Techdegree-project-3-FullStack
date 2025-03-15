@@ -106,8 +106,9 @@ jobTittleInput.addEventListener("change", e => { //when a job role is selected i
 
 designIput.addEventListener("change", e=>{ //When the user select a desing
     colorInput.disabled = false; //When user selected a option the color filed is enable
-    colorInput.querySelector("option:nth-child(2)").selected = true; //and the first option element of the color field is selected
     changeColorDropDownMenu(e.target.value);//call the fuction that update the color dropdown menu base in the user selection
+    const firstElement = Array.from(colorInput.children).find(element => element.hidden === false);
+    firstElement.selected = true;
 });
 
 RegisterActivitiesBox.addEventListener("change", e => {
